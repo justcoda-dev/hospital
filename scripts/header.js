@@ -5,24 +5,10 @@ export default function headerFixed() {
     const toggleHeight = $header.clientHeight;
 
     const showToggle = debounce(() => {
-        const [$social, $navigation] = $header.children;
-        const $navigationLogo = $navigation.querySelector(".header__logo")
-        const $navigationList = [...$navigation.querySelector(".header__nav-list").children]
         if (toggleHeight < window.scrollY) {
-
-            $header.style.position = "fixed";
-            $header.style["z-index"] = "10";
-            $social.style.display = "none";
-            $navigation.style.background = "#000000"
-            $navigationLogo.style.color = "#00a3c8";
-            $navigationList.forEach(item => item.style.color = "#ffffff");
-
+            $header.classList.add("dark")
         } else {
-            $header.style.position = "absolute";
-            $social.style.display = "block";
-            $navigation.style.background = "#ffffff"
-            $navigationLogo.style.color = "#333333";
-            $navigationList.forEach(item => item.style.color = "#00a3c8");
+            $header.classList.remove("dark")
         }
     }, 100)
 
@@ -30,12 +16,28 @@ export default function headerFixed() {
     window.addEventListener("scroll", showToggle)
 
 //     mobile header
-    let showMenuState = false;
+    let state = {
+        get showMenu() {
+            return this._value
+        },
+        set showMenu(v) {
+            this._value = v
+            if (v) {
+                $mobileMenu.classList.add("open")
+            } else {
+                $mobileMenu.classList.remove("open")
+            }
+        }
+    }
+
     const $mobileButton = $header.querySelector(".header__mobile-nav-button");
     const $mobileMenu = $header.querySelector(".header__mobile-menu");
 
     $mobileButton.addEventListener("click", () => {
-        showMenuState = !showMenuState
-        $mobileMenu.style.display = showMenuState ? "block" : "none";
+        state.showMenu = !state.showMenu
+    })
+
+    $mobileMenu.querySelector(".header__mobile-nav-list").addEventListener("click", () => {
+        state.showMenu = false
     })
 }

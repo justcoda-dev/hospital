@@ -14,9 +14,11 @@ export default function services() {
         shownItemsState.forEach((shownItem, index) => {
             if (shownItem.id === id) {
                 shownItem.show = !shownItem.show
-
-                const $innerList = $listItems[index].querySelector("ul")
-                $innerList.style.display = shownItem.show ? "block" : "none"
+                if (shownItem.show) {
+                    $listItems[index].classList.add("open")
+                } else {
+                    $listItems[index].classList.remove("open")
+                }
             }
         })
     })

@@ -128,6 +128,9 @@ body {
   line-height: 1.2;
   color: $darkGrey;
   margin-bottom: 20px;
+  @media (max-width: $m) {
+    font-size: 1.8rem;
+  }
 }
 
 .h4 {
@@ -136,6 +139,10 @@ body {
   line-height: 1.2;
   color: $darkGrey;
   margin-bottom: 20px;
+  word-break: break-word;
+  @media (max-width: $m) {
+    font-size: 1.1rem;
+  }
 }
 
 .h5 {
@@ -181,6 +188,20 @@ body {
 
   &__contacts {
     color: $white;
+
+    a {
+      display: flex;
+      align-items: center;
+      color: $white;
+      font-size: 1.2rem;
+
+      svg {
+        width: 22px;
+        height: 22px;
+        margin-right: 5px;
+      }
+
+    }
   }
 
   &__social-links {
@@ -233,15 +254,49 @@ body {
     color: $blue;
     text-transform: uppercase;
     font-weight: 500;
-
+    cursor: pointer;
   }
+
+  // /navigation
 
   // mobile list
   &__mobile-nav-button {
-    color: red;
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+
+    & span {
+      position: absolute;
+      background: $blue;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      top: 9px;
+    }
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      left: 0;
+      background: $blue;
+    }
+
+    &:before {
+      top: 0;
+    }
+
+    &:after {
+      bottom: 0;
+    }
+
     @media (min-width: $l) {
       display: none;
     }
+
   }
 
   &__mobile-menu {
@@ -255,6 +310,11 @@ body {
     @media (min-width: $l) {
       display: none;
     }
+  }
+
+  .open {
+    display: block;
+    animation: fadeIn 0.3s ease-in;
   }
 
   &__mobile-logo {
@@ -279,13 +339,39 @@ body {
     line-height: 1.8;
     padding: 6px 15px;
     font-weight: 500;
+    cursor: pointer;
   }
 
-  // mobile list
+  // /mobile list
 
-  // /navigation
-  // *** /header
 }
+
+.dark {
+  position: fixed;
+  z-index: 10;
+
+  .header__social {
+    display: none;
+  }
+
+  .header__navigation {
+    background: $black;
+    padding: 5px 0;
+  }
+
+  .header__nav-item {
+    color: $white;
+  }
+
+  .header__logo {
+    color: $blue;
+  }
+
+  animation: fadeIn 1s ease-in;
+}
+
+// *** /header
+
 
 // *** banner
 .banner {
@@ -622,6 +708,23 @@ body {
   background: $whiteBackground;
 
   &__inner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__download-button {
+    width: 250px;
+    margin-bottom: 20px;
+
+    div > span {
+      color: $textGrey;
+    }
+
+    &:hover {
+      div > span {
+        color: $white;
+      }
+    }
   }
 
   // heading
@@ -645,32 +748,62 @@ body {
 
   &__category-list-item {
     border: 1px solid $border;
+    position: relative;
   }
 
-  &__category-list-item {
-  }
 
   &__category-list-item-title {
     padding: 15px;
     margin: 0;
     cursor: pointer;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: "";
+      height: 8px;
+      width: 8px;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: $darkGrey;
+      border-radius: 50%;
+    }
   }
+
+  .open {
+    .price-section__category-list-item-title {
+      color: $blue;
+
+      &:after {
+        background: $blue;
+      }
+    }
+
+    .price-section__price-list {
+      display: block;
+      animation: fadeIn 1s ease;
+      opacity: 1;
+    }
+  }
+
 
   // /category list
 
   // price list
   &__price-list {
     display: none;
+    opacity: 0;
     background: $whiteBackground;
     overflow: auto;
-
   }
+
 
   &__price-list-item {
     display: flex;
     justify-content: space-between;
-    margin: 15px 0;
-    padding: 15px;
+    margin: 5px 0;
+    padding: 5px 15px;
   }
 
   &__price-list-item-name {
@@ -699,13 +832,20 @@ body {
 
   &__category-item {
     div > span {
-      color: $black;
+      color: $textGrey;
     }
 
     &:hover {
       div > span {
         color: $white;
       }
+    }
+
+    @media (max-width: $l) {
+      //flex: 0 0 100%;
+    }
+    @media (max-width: $m) {
+      flex: 0 0 100%;
     }
   }
 
@@ -763,13 +903,13 @@ body {
     width: 100%;
     //  210px
     @media (max-width: $xl) {
-      height: 210px;
-    }
-    @media (max-width: $l) {
       height: 255px;
     }
+    @media (max-width: $l) {
+      height: 280px;
+    }
     @media (max-width: $m) {
-      height: 150px;
+      height: 200px;
     }
   }
 
@@ -791,72 +931,112 @@ body {
 }
 
 // *** /team-section
+
+// *** 0
+.footer {
+  position: relative;
+  background-image: url("../images/footer-background.jpg");
+  background-size: cover;
+  background-position: center;
+  padding-top: 60px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    background: $blue;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    opacity: .7;
+
+  }
+
+  &__inner {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    z-index: 1;
+    @media (max-width: $s) {
+      display: block;
+      margin: auto;
+    }
+  }
+
+  &__nav-menu {
+    display: flex;
+    flex-direction: column;
+    @media (max-width: $s) {
+      align-items: center;
+    }
+  }
+
+  &__nav-menu-title {
+    color: $white;
+  }
+
+  &__nav-item {
+    margin-bottom: 10px;
+    color: $white;
+    cursor: pointer;
+  }
+
+  &__contacts-list {
+    display: flex;
+    flex-direction: column;
+    @media (max-width: $s) {
+      align-items: center;
+      margin-top: 20px;
+    }
+  }
+
+  &__contacts-list-title {
+    color: $white;
+    text-align: center;
+  }
+
+  &__contacts-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    margin-bottom: 10px;
+    word-break: break-word;
+    width: 100%;
+
+    svg {
+      margin-right: 10px;
+      height: 30px;
+    }
+
+    span {
+      text-align: start;
+      word-break: break-word;
+    }
+  }
+
+  &__bottom {
+    margin-top: 60px;
+    height: 50px;
+    background: $blue;
+  }
+
+}
+
+// *** /footer
 // ***** /components
 
 
 // animation
 
 /*--------animation---------*/
-@keyframes fadeInOut {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
-@keyframes fadeHeaderInDown {
+@keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -30px, 0);
   }
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes marquee {
-  0% {
-    margin-left: 0;
-  }
-  100% {
-    margin-left: calc(-100%);
-  }
-}
-
-@keyframes ripple {
-  0% {
-    transform: scale(1);
-  }
-  75% {
-    transform: scale(1.75);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-@keyframes shadow {
-  0% {
-    transform: scale(1) translateY(0px);
-  }
-  100% {
-    transform: scale(0.8) translateY(75px);
-  }
-}
-
-@keyframes ghost {
-  0% {
-    transform: scale(1) translateY(0px)
-  }
-  100% {
-    transform: scale(1) translateY(-40px)
   }
 }
