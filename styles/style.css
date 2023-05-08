@@ -607,7 +607,7 @@ body p {
 }
 @media (max-width: 768px) {
   .services-section__list-item {
-    flex: 0 0 100%;
+    flex: 0 0 calc(100% - 20px);
   }
 }
 .services-section__list-item-svg {
