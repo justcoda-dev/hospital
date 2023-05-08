@@ -28,6 +28,7 @@ body p {
 
 .section {
   padding: 80px 0;
+  opacity: 0;
 }
 
 .container {
@@ -53,6 +54,15 @@ body p {
   .container {
     max-width: 1140px;
   }
+}
+
+.opacityFade {
+  animation: ease-in 1s opacityFade;
+}
+
+.fade-in {
+  animation: ease-in 0.5s fadeIn;
+  opacity: 1;
 }
 
 .slide-button {
@@ -105,6 +115,11 @@ body p {
   color: #333333;
   line-height: 1.5;
   margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+  .h1 {
+    font-size: 3rem;
+  }
 }
 
 .h3 {
@@ -165,17 +180,29 @@ body p {
 }
 .header__contacts {
   color: #ffffff;
+  display: flex;
 }
 .header__contacts a {
   display: flex;
   align-items: center;
   color: #ffffff;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  margin-right: 15px;
 }
 .header__contacts a svg {
   width: 22px;
   height: 22px;
   margin-right: 5px;
+}
+@media (max-width: 360px) {
+  .header__contacts a {
+    margin-right: 5px;
+    font-size: 0.8rem;
+  }
+  .header__contacts a svg {
+    width: 14px;
+    height: 14px;
+  }
 }
 .header__social-links {
   margin-left: auto;
@@ -184,10 +211,21 @@ body p {
   color: #ffffff;
   padding: 7px 13px;
 }
+@media (max-width: 360px) {
+  .header__social-link {
+    padding: 7px 0px;
+  }
+}
 .header__social-link-svg {
   width: 26px;
   height: 26px;
   fill: #ffffff;
+}
+@media (max-width: 360px) {
+  .header__social-link-svg {
+    width: 18px;
+    height: 18px;
+  }
 }
 .header__navigation {
   background: #ffffff;
@@ -205,6 +243,12 @@ body p {
   font-weight: 800;
   font-size: 1.5rem;
   color: #333333;
+}
+@media (max-width: 360px) {
+  .header__logo {
+    font-size: 1.1rem;
+    padding: 10px 0;
+  }
 }
 .header__nav-list {
   display: flex;
@@ -263,7 +307,9 @@ body p {
   z-index: 5;
   top: 0;
   background: #ffffff;
-  display: none;
+  transition: all 0.8s ease;
+  transform: translateX(-100%);
+  opacity: 0;
 }
 @media (min-width: 992px) {
   .header__mobile-menu {
@@ -271,8 +317,8 @@ body p {
   }
 }
 .header .open {
-  display: block;
-  animation: fadeIn 0.3s ease-in;
+  opacity: 1;
+  transform: translateX(0);
 }
 .header__mobile-logo {
   font-weight: 800;
@@ -299,7 +345,7 @@ body p {
 .dark {
   position: fixed;
   z-index: 10;
-  animation: fadeIn 1s ease-in;
+  animation: fadeIn 0.5s ease-in;
 }
 .dark .header__social {
   display: none;
@@ -413,7 +459,7 @@ body p {
 
 .intro-service {
   margin-top: -130px;
-  background: #f7f9fb;
+  background: none;
 }
 .intro-service .intro-services {
   display: flex;
@@ -550,12 +596,12 @@ body p {
 }
 
 .services-section__list {
+  width: 100%;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
 }
 .services-section__list-item {
-  flex: 0 0 45%;
+  flex: 1 0 45%;
   padding: 0 10px;
   margin: 30px 0;
 }
@@ -586,6 +632,14 @@ body p {
 }
 .price-section__download-button:hover div > span {
   color: #ffffff;
+}
+@media (max-width: 360px) {
+  .price-section__download-button {
+    width: 200px;
+  }
+  .price-section__download-button div {
+    padding: 12px 20px;
+  }
 }
 .price-section__category-list {
   background: #ffffff;
@@ -652,6 +706,9 @@ body p {
 .team-section__category-item:hover div > span {
   color: #ffffff;
 }
+.team-section__category-item:hover div {
+  border: 1px solid #00a3c8;
+}
 @media (max-width: 768px) {
   .team-section__category-item {
     flex: 0 0 100%;
@@ -662,9 +719,6 @@ body p {
 }
 .team-section .active div > span {
   color: #ffffff;
-}
-.team-section .active div:hover {
-  border: 1px solid #00a3c8;
 }
 .team-section__doctor-list {
   display: flex;
@@ -686,6 +740,11 @@ body p {
 @media (max-width: 768px) {
   .team-section__doctor-item {
     flex: 0 0 48%;
+  }
+}
+@media (max-width: 360px) {
+  .team-section__doctor-item {
+    flex: 0 0 98%;
   }
 }
 .team-section__doctor-item:hover {
@@ -714,12 +773,18 @@ body p {
 }
 @media (max-width: 768px) {
   .team-section__doctor-item-img {
-    height: 200px;
+    height: 220px;
+  }
+}
+@media (max-width: 360px) {
+  .team-section__doctor-item-img {
+    height: 250px;
   }
 }
 .team-section__doctor-item-text-block {
   height: 30%;
   margin-bottom: 10px;
+  padding: 5px;
 }
 .team-section__doctor-item-text-block-title {
   text-align: center;
@@ -820,6 +885,34 @@ body p {
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes fadeFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes fadeToLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+@keyframes opacityFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

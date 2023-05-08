@@ -8,6 +8,7 @@ body {
   font-weight: 400;
   line-height: 1.8;
 
+
   ul {
     margin: 0;
     padding: 0;
@@ -35,6 +36,7 @@ body {
 
 .section {
   padding: 80px 0;
+  opacity: 0;
 }
 
 .container {
@@ -55,6 +57,17 @@ body {
   }
 }
 
+// animation
+.opacityFade {
+  animation: ease-in 1s opacityFade;
+}
+
+.fade-in {
+  animation: ease-in .5s fadeIn;
+  opacity: 1;
+}
+
+// animation
 // ***** /global
 
 // ***** ui
@@ -117,6 +130,9 @@ body {
   color: $darkGrey;
   line-height: 1.5;
   margin-bottom: 20px;
+  @media (max-width: $m) {
+    font-size: 3rem;
+  }
 }
 
 .h2 {
@@ -177,6 +193,7 @@ body {
   // social
   &__social {
     background: $blue;
+
   }
 
   &__social-inner {
@@ -188,12 +205,14 @@ body {
 
   &__contacts {
     color: $white;
+    display: flex;
 
     a {
       display: flex;
       align-items: center;
       color: $white;
-      font-size: 1.2rem;
+      font-size: 1rem;
+      margin-right: 15px;
 
       svg {
         width: 22px;
@@ -202,22 +221,40 @@ body {
       }
 
     }
+
+    @media (max-width: $xs) {
+      a {
+        margin-right: 5px;
+        font-size: .8rem;
+
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
   }
 
   &__social-links {
-
     margin-left: auto;
   }
 
   &__social-link {
     color: $white;
     padding: 7px 13px;
+    @media (max-width: $xs) {
+      padding: 7px 0px;
+    }
   }
 
   &__social-link-svg {
     width: 26px;
     height: 26px;
     fill: $white;
+    @media (max-width: $xs) {
+      width: 18px;
+      height: 18px;
+    }
   }
 
   // /social
@@ -239,6 +276,10 @@ body {
     font-weight: 800;
     font-size: 1.5rem;
     color: $darkGrey;
+    @media (max-width: $xs) {
+      font-size: 1.1rem;
+      padding: 10px 0;
+    }
   }
 
   &__nav-list {
@@ -306,16 +347,19 @@ body {
     z-index: 5;
     top: 0;
     background: $white;
-    display: none;
+    transition: all 0.8s ease;
+    transform: translateX(-100%);
+    opacity: 0;
     @media (min-width: $l) {
       display: none;
     }
   }
 
   .open {
-    display: block;
-    animation: fadeIn 0.3s ease-in;
+    opacity: 1;
+    transform: translateX(0);
   }
+
 
   &__mobile-logo {
     font-weight: 800;
@@ -367,7 +411,7 @@ body {
     color: $blue;
   }
 
-  animation: fadeIn 1s ease-in;
+  animation: fadeIn .5s ease-in;
 }
 
 // *** /header
@@ -492,7 +536,7 @@ body {
 // *** intro-service-section
 .intro-service {
   margin-top: -130px;
-  background: $whiteBackground;
+  background: none;
   // intro-service-list
   .intro-services {
     display: flex;
@@ -672,19 +716,20 @@ body {
   // /heading
   // list
   &__list {
+    width: 100%;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
   }
 
   &__list-item {
-    flex: 0 0 45%;
+    flex: 1 0 45%;
     padding: 0 10px;
     margin: 30px 0;
     @media (max-width: $m) {
       flex: 0 0 100%;
     }
   }
+
 
   &__list-item-svg {
     fill: $blue;
@@ -723,6 +768,13 @@ body {
     &:hover {
       div > span {
         color: $white;
+      }
+    }
+
+    @media (max-width: $xs) {
+      width: 200px;
+      div {
+        padding: 12px 20px;
       }
     }
   }
@@ -839,11 +891,13 @@ body {
       div > span {
         color: $white;
       }
+
+      div {
+        border: 1px solid $blue;
+      }
+
     }
 
-    @media (max-width: $l) {
-      //flex: 0 0 100%;
-    }
     @media (max-width: $m) {
       flex: 0 0 100%;
     }
@@ -855,11 +909,8 @@ body {
     div > span {
       color: $white;
     }
-
-    div:hover {
-      border: 1px solid $blue;
-    }
   }
+
 
   //  /category list
   //  doctor list
@@ -881,6 +932,9 @@ body {
     }
     @media (max-width: $m) {
       flex: 0 0 48%;
+    }
+    @media (max-width: $xs) {
+      flex: 0 0 98%;
     }
 
     &:hover {
@@ -909,13 +963,17 @@ body {
       height: 280px;
     }
     @media (max-width: $m) {
-      height: 200px;
+      height: 220px;
+    }
+    @media (max-width: $xs) {
+      height: 250px;
     }
   }
 
   &__doctor-item-text-block {
     height: 30%;
     margin-bottom: 10px;
+    padding: 5px;
   }
 
   &__doctor-item-text-block-title {
@@ -932,7 +990,7 @@ body {
 
 // *** /team-section
 
-// *** 0
+// ***
 .footer {
   position: relative;
   background-image: url("../images/footer-background.jpg");
@@ -965,6 +1023,7 @@ body {
   &__nav-menu {
     display: flex;
     flex-direction: column;
+
     @media (max-width: $s) {
       align-items: center;
     }
@@ -978,6 +1037,7 @@ body {
     margin-bottom: 10px;
     color: $white;
     cursor: pointer;
+
   }
 
   &__contacts-list {
@@ -1038,5 +1098,36 @@ body {
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeToLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes opacityFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
