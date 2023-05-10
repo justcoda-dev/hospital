@@ -243,6 +243,7 @@ body p {
   font-weight: 800;
   font-size: 1.5rem;
   color: #333333;
+  cursor: pointer;
 }
 @media (max-width: 360px) {
   .header__logo {
@@ -650,7 +651,7 @@ body p {
   position: relative;
 }
 .price-section__category-list-item-title {
-  padding: 15px;
+  padding: 15px 40px 15px 15px;
   margin: 0;
   cursor: pointer;
   position: relative;
@@ -696,6 +697,11 @@ body p {
   margin-left: 5px;
 }
 
+.team-section__lists-title {
+  margin: 15px auto;
+  text-align: center;
+  scroll-margin-top: 60px;
+}
 .team-section__category-list {
   display: flex;
   flex-wrap: wrap;
@@ -724,7 +730,6 @@ body p {
   display: flex;
   flex-wrap: wrap;
   gap: 2%;
-  margin: 15px 0;
 }
 .team-section__doctor-item {
   box-shadow: 0 0 5px #f2f2f2;
@@ -792,6 +797,41 @@ body p {
 }
 .team-section__doctor-item-text-block-text {
   text-align: center;
+}
+.team-section__doctors-general-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.team-section__doctors-general-list-item {
+  box-shadow: 0 0 5px #f2f2f2;
+  transition: 0.3s;
+  box-sizing: border-box;
+  flex: 0 0 calc(50% - 10px);
+  margin: 5px;
+  position: relative;
+}
+.team-section__doctors-general-list-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 10px 10px #f2f2f2;
+}
+@media (max-width: 992px) {
+  .team-section__doctors-general-list-item {
+    flex: 0 0 calc(100% - 10px);
+  }
+}
+.team-section__doctors-general-list-item-img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.team-section__doctors-general-list-item-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  font-weight: 700;
+  background: #ffffff;
 }
 
 .footer {

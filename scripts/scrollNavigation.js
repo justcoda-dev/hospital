@@ -28,4 +28,8 @@ export default function scrollNavigation() {
     }
 
 //section on scroll
+    const $logo = document.querySelector(".header__logo")
+    $logo.addEventListener("click", () => {
+        $main.scrollIntoView({behavior: "smooth", block: "start"})
+    })
 }

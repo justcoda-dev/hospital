@@ -276,6 +276,7 @@ body {
     font-weight: 800;
     font-size: 1.5rem;
     color: $darkGrey;
+    cursor: pointer;
     @media (max-width: $xs) {
       font-size: 1.1rem;
       padding: 10px 0;
@@ -805,7 +806,7 @@ body {
 
 
   &__category-list-item-title {
-    padding: 15px;
+    padding: 15px 40px 15px 15px;
     margin: 0;
     cursor: pointer;
     position: relative;
@@ -876,11 +877,20 @@ body {
   &__inner {
   }
 
+  //  title
+  &__lists-title {
+    margin: 15px auto;
+    text-align: center;
+    scroll-margin-top: 60px;
+  }
+
+  // /title
   //  category list
   &__category-list {
     display: flex;
     flex-wrap: wrap;
   }
+
 
   &__category-item {
     div > span {
@@ -918,8 +928,9 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
-    margin: 15px 0;
+
   }
+
 
   &__doctor-item {
     box-shadow: 0 0 5px $border;
@@ -986,6 +997,48 @@ body {
   }
 
   //  /doctor list
+  //  doctors-general-list
+  &__doctors-general-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__doctors-general-list-item {
+    box-shadow: 0 0 5px $border;
+    transition: .3s;
+    box-sizing: border-box;
+    flex: 0 0 calc(50% - 10px);
+    margin: 5px;
+    position: relative;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 10px 10px $border;
+    }
+
+    @media (max-width: $l) {
+      flex: 0 0 calc(100% - 10px);
+    }
+  }
+
+  &__doctors-general-list-item-img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__doctors-general-list-item-text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: 700;
+    background: $white;
+  }
+
+  //  /doctors-general-list
+
 }
 
 // *** /team-section
