@@ -10,7 +10,7 @@ export default function headerFixed() {
         } else {
             $header.classList.remove("dark")
         }
-    }, 100)
+    }, 50)
 
     showToggle()
     window.addEventListener("scroll", showToggle)
@@ -23,9 +23,9 @@ export default function headerFixed() {
         set showMenu(v) {
             this._value = v
             if (v) {
-                $mobileMenu.classList.add("open")
+                $mobileMenu.classList.add("open-menu")
             } else {
-                $mobileMenu.classList.remove("open")
+                $mobileMenu.classList.remove("open-menu")
             }
         }
     }

@@ -32,15 +32,28 @@ export default function doctorsList() {
 
     // functions
     function sortDoctorsByCategory(category, doctors) {
-        doctors.forEach(doctor => {
-            if (category === "all") {
-                return doctor.style.display = "list-item"
-            } else if (doctor.dataset.departmentDoctor !== category) {
+        const $doctors = [...doctors]
+        const $doctorsNames = $doctors.map(doctor => doctor.querySelector("h5")?.textContent)
+        const $uniqueDoctors = $doctors.filter((doctor, index) => {
+            if (doctor.querySelector("h5")?.textContent) {
+                return $doctorsNames.indexOf(doctor.querySelector("h5")?.textContent) === index
+            }
+        })
+
+        $doctors.forEach(doctor => {
+            if (doctor.dataset.departmentDoctor !== category) {
                 doctor.style.display = "none"
             } else {
                 doctor.style.display = "list-item"
             }
         })
+
+        if (category === "all") {
+            $uniqueDoctors.forEach(doctor => {
+                return doctor.style.display = "list-item"
+            })
+        }
+
     }
 
     function toggleActiveCategory(currentCategoryElement, prevCategoryElement) {

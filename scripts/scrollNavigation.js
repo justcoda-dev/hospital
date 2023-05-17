@@ -8,9 +8,10 @@ export default function scrollNavigation() {
     const $services = document.querySelector("#services")
     const $price = document.querySelector("#price")
     const $team = document.querySelector("#team")
+    const $articles = document.querySelector("#articles")
     const $contacts = document.querySelector("#contacts")
 
-    const navMarks = [$main, $about, $services, $price, $team, $contacts]
+    const navMarks = [$main, $about, $services, $price, $team, $articles, $contacts]
 
     setNavClickListener($navList, navMarks);
     setNavClickListener($mobileNavList, navMarks);

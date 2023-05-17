@@ -6,7 +6,8 @@ export default function sectionAnimation() {
     const $services = document.querySelector("#services")
     const $price = document.querySelector("#price")
     const $team = document.querySelector("#team")
-    const $elements = [$intro, $about, $services, $price, $team]
+    const $articles = document.querySelector("#articles")
+    const $elements = [$intro, $about, $services, $price, $team,$articles]
 
     const debouncedOnScroll = debounce(() => {
         const observer = new IntersectionObserver((elements) => {
