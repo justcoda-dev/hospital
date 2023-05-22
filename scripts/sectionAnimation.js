@@ -1,5 +1,7 @@
 import {debounce} from "./debounce.js";
 
+
+
 export default function sectionAnimation() {
     const $intro = document.querySelector("#intro")
     const $about = document.querySelector("#about")
